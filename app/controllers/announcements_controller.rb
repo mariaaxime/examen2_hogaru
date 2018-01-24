@@ -4,6 +4,10 @@ class AnnouncementsController < ApplicationController
   def create
     @announcement = current_user.announcements.build(announcement_params)
     if @announcement.save
+      User.all.each do |u|
+        seen_announcement = SeenAnnouncement.new(user_id: u.id, announcement_id: @announcement.id, seen: false)
+        seen_announcement.save
+      end
       flash[:notice] = "Announcement created!"
       redirect_to root_url
     else
