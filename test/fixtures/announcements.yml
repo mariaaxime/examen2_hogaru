@@ -3,7 +3,9 @@
 one:
   content: MyString
   expiration_date: 2018-01-24
+  user: one
 
 two:
   content: MyString
   expiration_date: 2018-01-24
+  user: two

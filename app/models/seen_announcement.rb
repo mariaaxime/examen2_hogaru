@@ -1,2 +1,0 @@
-class SeenAnnouncement < ApplicationRecord
-end
