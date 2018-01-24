@@ -1,0 +1,2 @@
+class SeenAnnouncement < ApplicationRecord
+end
