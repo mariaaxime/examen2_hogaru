@@ -2,6 +2,10 @@
 
 one:
   seen: false
+  user: one
+  announcement: one
 
 two:
   seen: false
+  user: two
+  announcement: two
