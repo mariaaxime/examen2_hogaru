@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124152817) do
+ActiveRecord::Schema.define(version: 20180124170141) do
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "content"
+    t.date "expiration_date"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_announcements_on_user_id"
+  end
+
+  create_table "seen_announcements", force: :cascade do |t|
+    t.boolean "seen"
+    t.integer "user_id"
+    t.integer "announcement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["announcement_id"], name: "index_seen_announcements_on_announcement_id"
+    t.index ["user_id"], name: "index_seen_announcements_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
