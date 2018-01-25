@@ -4,7 +4,7 @@ class AnnouncementsController < ApplicationController
   def index
     @announcements = []
     Announcement.all.map do |a|
-      @announcements.push(a) if !!SeenAnnouncement.find_by(announcement_id: a.id, user_id: current_user.id) && !SeenAnnouncement.find_by(announcement_id: a.id, user_id: current_user.id).seen && a.expiration_date >= Date.today
+      @announcements.push(a) if !SeenAnnouncement.find_by(announcement_id: a.id, user_id: current_user.id).nil? && !SeenAnnouncement.find_by(announcement_id: a.id, user_id: current_user.id).seen && a.expiration_date >= Date.today
     end
   end
   
