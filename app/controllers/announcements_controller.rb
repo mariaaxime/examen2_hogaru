@@ -18,7 +18,8 @@ class AnnouncementsController < ApplicationController
       flash[:notice] = "Announcement created!"
       redirect_to announcements_url
     else
-      render 'static_pages/home'
+      redirect_to announcements_url
+      flash[:alert] = "Announcement couldn't be created."
     end
   end
 

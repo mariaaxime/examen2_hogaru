@@ -2,7 +2,6 @@
 <div class="callout">
   <h3><%= "Hello, #{@user.name} #{@user.last_name}!" %></h3>
 </div>
-
 <%= form_for(@announcement) do |f| %>
   <div class="field">
     <%= f.text_area :content, placeholder: "Create public announcement" %>
@@ -10,5 +9,5 @@
   <div class="field">
     <%= f.date_field :expiration_date %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "Post" %>
 <% end %>

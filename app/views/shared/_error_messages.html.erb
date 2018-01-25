@@ -1,0 +1,10 @@
+<% if @announcement.errors.any? %>
+  <div class="callout alert">
+    The new announcement contains <%= pluralize(@announcement.errors.count, "error") %>.
+    <ul>
+      <% @announcement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
