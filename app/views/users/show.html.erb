@@ -1,13 +1,20 @@
 <% provide(:title, "#{@user.name} #{@user.last_name}") %>
-<div class="callout">
+<div class="row columns">
   <h3><%= "Hello, #{@user.name} #{@user.last_name}!" %></h3>
 </div>
-<%= form_for(@announcement) do |f| %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "Create public announcement" %>
-  </div>
-  <div class="field">
-    <%= f.date_field :expiration_date %>
-  </div>
-  <%= f.submit "Post" %>
-<% end %>
+   <%= form_for(@announcement) do |f| %>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-8 cell">
+          <%= f.label :content, "Your announcement" %>
+          <%= f.text_area :content, placeholder: "Create public announcement" %>
+        </div>
+        <div class="medium-4 cell">
+          <%= f.label :expiration_date, "Expiration date" %>
+          <%= f.date_field :expiration_date %>
+        </div>
+      </div>
+      <%= f.submit "Post", class: "button float-right" %>
+    </div>
+  <% end %>
+</div>

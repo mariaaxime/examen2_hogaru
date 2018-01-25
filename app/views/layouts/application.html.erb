@@ -13,13 +13,15 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <% if notice %>
-      <div class="callout success"><%= notice %></div>
-    <% end %>
-    <% if alert %>
-      <div class="callout alert"><%= alert %></div>
-    <% end %>
-    <%= yield %>
-
+    <div class="row columns">
+      <p></p>
+    </div>
+      <% if notice %>
+        <div class="callout success"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="callout alert"><%= alert %></div>
+      <% end %>
+      <%= yield %>
   </body>
 </html>
