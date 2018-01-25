@@ -1,6 +1,6 @@
 <% provide(:title, "#{@user.name} #{@user.last_name}") %>
 <div class="callout">
-  <h3>Hello!, <%= @user.name %> <%= @user.last_name %></h3>
+  <h3><%= "Hello, #{@user.name} #{@user.last_name}!" %></h3>
 </div>
 
 <%= form_for(@announcement) do |f| %>

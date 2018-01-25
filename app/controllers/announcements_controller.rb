@@ -1,5 +1,12 @@
 class AnnouncementsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy, :index, :edit, :update]
+  
+  def index
+    @announcements = []
+    Announcement.all.map do |a|
+      @announcements.push(a) if !SeenAnnouncement.find_by(announcement_id: a.id, user_id: current_user.id).seen && a.expiration_date >= Date.today
+    end
+  end
   
   def create
     @announcement = current_user.announcements.build(announcement_params)
@@ -9,7 +16,7 @@ class AnnouncementsController < ApplicationController
         seen_announcement.save
       end
       flash[:notice] = "Announcement created!"
-      redirect_to root_url
+      redirect_to announcements_url
     else
       render 'static_pages/home'
     end
