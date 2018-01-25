@@ -5,7 +5,7 @@
   <div class="callout">
     <p><%= "Made by: #{full_name(announcement.user_id)}" %></p>
     <h4><%= announcement.content %></h5>
-    <p><%= "Valide until #{announcement.expiration_date}" %></p>
+    <p><%= "Valid until #{announcement.expiration_date}" %></p>
     <% @seen_announcement = SeenAnnouncement.find_by(announcement_id: announcement.id, user_id: current_user.id) %>
     <%= form_for(@seen_announcement) do |f| %>
       <%= f.submit "Mark as seen" %>
