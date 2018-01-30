@@ -1,14 +1,12 @@
 <% provide(:title, 'Announcements') %>
 <h1>Announcements</h1>
 
-<% @announcements.each do |announcement| %>
+<%= link_to "Create new announcement", current_user %></li>
+<% @announcements.each do |a| %>
   <div class="callout">
-    <p><%= "Made by: #{full_name(announcement.user_id)}" %></p>
-    <h4><%= announcement.content %></h5>
-    <p><%= "Valid until #{announcement.expiration_date}" %></p>
-    <% @seen_announcement = SeenAnnouncement.find_by(announcement_id: announcement.id, user_id: current_user.id) %>
-    <%= form_for(@seen_announcement) do |f| %>
-      <%= f.submit "Mark as seen" %>
-    <% end %> 
+    <p><%= "Made by: #{full_name(a.user_id)}" %></p>
+    <h4><%= a.content %></h5>
+    <p><%= "Valid until #{a.expiration_date}" %></p>
+    <a href=<%= url_for :action => :mark_as_seen, :announcement => a %>> Mark as seen </a>
   </div>
 <% end %>

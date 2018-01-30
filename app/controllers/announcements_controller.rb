@@ -3,8 +3,10 @@ class AnnouncementsController < ApplicationController
   
   def index
     @announcements = []
-    Announcement.all.map do |a|
-      @announcements.push(a) if !SeenAnnouncement.find_by(announcement_id: a.id, user_id: current_user.id).nil? && !SeenAnnouncement.find_by(announcement_id: a.id, user_id: current_user.id).seen && a.expiration_date >= Date.today
+    if cookies[:seen_announcements].nil?
+      @announcements = Announcement.all
+    else
+      @announcements = Announcement.where.not(id: cookies.signed[:seen_announcements])
     end
   end
   
@@ -24,6 +26,15 @@ class AnnouncementsController < ApplicationController
   end
 
   def destroy
+  end
+  
+  def mark_as_seen
+    seen_announcements = cookies.signed[:seen_announcements] || []
+    seen_announcements = seen_announcements << params[:announcement]
+    
+    cookies.signed[:seen_announcements] = seen_announcements
+    flash[:notice] = 'Marcado como visto'
+    redirect_to announcements_url
   end
 
   private
