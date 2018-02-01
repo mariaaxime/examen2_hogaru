@@ -2,21 +2,13 @@ class AnnouncementsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy, :index, :edit, :update]
   
   def index
-    @announcements = []
-    if cookies[:seen_announcements].nil?
-      @announcements = Announcement.all
-    else
-      @announcements = Announcement.where.not(id: cookies.signed[:seen_announcements])
-    end
+    @announcements = Announcement.where.not(id: cookies.signed[:seen_announcements])
+                                 .where("expiration_date >= ?", Date.today)
   end
   
   def create
     @announcement = current_user.announcements.build(announcement_params)
     if @announcement.save
-      User.all.each do |u|
-        seen_announcement = SeenAnnouncement.new(user_id: u.id, announcement_id: @announcement.id, seen: false)
-        seen_announcement.save
-      end
       flash[:notice] = "Announcement created!"
       redirect_to announcements_url
     else

@@ -7,5 +7,4 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates :last_name, presence: true, length: { maximum: 20 }
   has_many :announcements
-  has_many :seen_announcements
 end

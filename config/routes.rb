@@ -7,6 +7,5 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]
   resources :announcements, only: [:create, :destroy, :index, :edit, :update]
-  resources :seen_announcements, only: [:edit, :update]
   
 end
