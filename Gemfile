@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',                   '5.1.4'
-gem 'devise',                  '~> 4.4', '>= 4.4.1'
+gem 'devise',                  '~> 4.7'
 gem 'foundation-rails',        '~> 6.4', '>= 6.4.1.3'
 gem 'bcrypt',                  '3.1.11'
 gem 'faker',                   '1.7.3'
